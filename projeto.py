@@ -16,7 +16,6 @@ def salvar_animais(animais):
             f.write("TAREFAS: " + "; ".join(a["tarefas"]) + "\n")
             f.write("---\n")
 
-
 def carregar_animais():
     """Lê os animais do arquivo e retorna como lista de dicionários"""
     animais = []
@@ -53,3 +52,29 @@ def carregar_animais():
     except FileNotFoundError:
         pass
     return animais
+
+def adicionar_animal():
+    nome = input("Nome do animal: ")
+    especie = input("Espécie: ")
+    raca = input("Raça: ")
+    idade = input("Idade (em anos): ")
+    saude = input("Estado de saúde: ")
+    data_chegada = input("Data de chegada (AAAA-MM-DD): ")
+    comportamento = input("Comportamento: ")
+
+    animal = {
+        "nome": nome,
+        "especie": especie,
+        "raca": raca,
+        "idade": idade,
+        "saude": saude,
+        "data_chegada": data_chegada,
+        "comportamento": comportamento,
+        "tarefas": []
+    }
+
+    animais = carregar_animais()
+    animais.append(animal)
+    salvar_animais(animais)
+    print(f"\n Animal '{nome}' adicionado com sucesso!\n")
+
